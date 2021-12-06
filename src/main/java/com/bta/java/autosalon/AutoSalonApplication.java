@@ -1,5 +1,6 @@
 package com.bta.java.autosalon;
 
+import com.bta.java.autosalon.model.Balance;
 import com.bta.java.autosalon.model.car.BodyType;
 import com.bta.java.autosalon.model.car.Car;
 import com.bta.java.autosalon.model.car.FuelType;
@@ -7,6 +8,7 @@ import com.bta.java.autosalon.model.car.GearType;
 import com.bta.java.autosalon.model.car.Manufacturer;
 import com.bta.java.autosalon.service.BuyService;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -38,6 +40,11 @@ public class AutoSalonApplication implements CommandLineRunner {
   public void run(String... args) throws Exception {
     System.out.println("Hello from Spring boot!!!");
 
+    //Balance initialBalance =
+    //    Balance.builder().balance(300_000L).transactionTime(LocalDateTime.now()).build();
+    //balanceRepository.save(initialBalance);
+
+
     Car carToSell = Car.builder()
         .bodyType(BodyType.UNIVERSAL)
         .color("WHITE")
@@ -49,7 +56,7 @@ public class AutoSalonApplication implements CommandLineRunner {
         .build();
     long myPrice = 25_000;
     if (buyService.evaluatePrice(carToSell, myPrice)) {
-      buyService.buyCar(carToSell, myPrice);
+     // buyService.buyCar(carToSell, myPrice);
     }
 
     System.out.println(carRepository.findAll());

@@ -1,6 +1,7 @@
 package com.bta.java.autosalon.model;
 
 import com.bta.java.autosalon.model.car.Car;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,6 +34,7 @@ public class Balance {
 
   private Long summ;
 
+  @JsonIgnore
   @ManyToOne
   @JoinColumn(name = "car_id")
   private Car car;

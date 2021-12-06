@@ -8,6 +8,7 @@ import com.bta.java.autosalon.repository.CarRepository;
 import com.bta.java.autosalon.repository.PlaceRepository;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,7 @@ public class BuyServiceImpl implements BuyService {
     return priceDifference <= 15;
   }
 
+  @Transactional
   @Override
   public void buyCar(Car carToBuy, long price) {
     if (!parkingPlaceValidator.hasFreePlace()) {
@@ -120,6 +122,7 @@ public class BuyServiceImpl implements BuyService {
     Balance buyTx = Balance.builder()
         .summ(-price)
         .balance(newBalance)
+        .transactionTime(LocalDateTime.now())
         .car(car)
         .build();
     balanceRepository.save(buyTx);
