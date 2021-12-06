@@ -10,5 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface BalanceRepository extends JpaRepository<Balance, Long> {
 
   @Query("select bl from com.bta.java.autosalon.model.Balance bl order by transaction_time desc")
-  List<Balance> findLatestTransaction();
+  List<Balance> findAllOrderedByTransactionTime();
+
+  Balance findOneByCarIdAndSummLessThan(Long carId, Long summ);
 }
