@@ -5,6 +5,7 @@ import com.bta.java.autosalon.model.car.Car;
 import com.bta.java.autosalon.model.car.FuelType;
 import com.bta.java.autosalon.model.car.GearType;
 import com.bta.java.autosalon.model.car.Manufacturer;
+import com.bta.java.autosalon.service.BuyService;
 import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -26,6 +27,9 @@ public class AutoSalonApplication implements CommandLineRunner {
   @Autowired
   private PlaceRepository placeRepository;
 
+  @Autowired
+  private BuyService buyService;
+
   public static void main(String[] args) {
     SpringApplication.run(AutoSalonApplication.class, args);
   }
@@ -34,16 +38,22 @@ public class AutoSalonApplication implements CommandLineRunner {
   public void run(String... args) throws Exception {
     System.out.println("Hello from Spring boot!!!");
 
-    Car carToSave = Car.builder()
-        .bodyType(BodyType.SEDAN)
+    Car carToSell = Car.builder()
+        .bodyType(BodyType.UNIVERSAL)
         .color("WHITE")
         .fuelType(FuelType.DIESEL)
         .gearType(GearType.AUTOMATIC)
         .manufacturer(Manufacturer.BMW)
-        .releaseDate(LocalDate.of(2019, 2, 20))
-        .description("Super fast car!")
+        .releaseDate(LocalDate.of(2012, 2, 20))
+        .description("Super good car!")
         .build();
+    long myPrice = 25_000;
+    if (buyService.evaluatePrice(carToSell, myPrice)) {
+      buyService.buyCar(carToSell, myPrice);
+    }
 
     System.out.println(carRepository.findAll());
+    System.out.println(balanceRepository.findAll());
+    System.out.println(placeRepository.findAll());
   }
 }

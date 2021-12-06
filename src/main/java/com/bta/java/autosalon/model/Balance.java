@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @Entity
@@ -19,6 +20,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @SuperBuilder
 @NoArgsConstructor
+@ToString(exclude = "car")
 public class Balance {
   @Id
   @GeneratedValue(strategy= GenerationType.IDENTITY)

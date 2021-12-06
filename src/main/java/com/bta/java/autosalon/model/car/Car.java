@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @Entity
@@ -24,10 +25,11 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @SuperBuilder
 @NoArgsConstructor
+@ToString(exclude = "transactions")
 public class Car {
 
   @Id
-  @GeneratedValue(strategy= GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   private String color;
@@ -54,4 +56,5 @@ public class Car {
 
   @OneToMany(mappedBy = "car")
   private List<Balance> transactions;
+
 }

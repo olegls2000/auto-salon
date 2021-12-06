@@ -10,6 +10,7 @@ import javax.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @Entity
@@ -17,6 +18,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @SuperBuilder
 @NoArgsConstructor
+@ToString(exclude = "car")
 public class Place {
   @Id
   @GeneratedValue(strategy= GenerationType.IDENTITY)
