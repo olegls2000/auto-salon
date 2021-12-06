@@ -1,4 +1,4 @@
-package com.bta.java.model.car;
+package com.bta.java.autosalon.model.car;
 
 public enum BodyType {
   SEDAN,
